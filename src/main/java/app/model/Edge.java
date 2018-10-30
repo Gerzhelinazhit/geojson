@@ -1,31 +1,29 @@
 package app.model;
 
 import javax.persistence.*;
-
-@Entity
 //@Table(name ="edge",schema = "geojson", catalog = "")
+@Entity
 public class Edge {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int idNode;
     private String  parentId;
     private String pathId;
-//    private Node nodeByIdNode;
+    private Node nodeByIdNode;
 
 
 
 
 
-    public Edge() {
-    }
+//    public EdgeEntity() {
+//    }
 
     public Edge(String parentID, String pathID, String ID) {
         this.parentId = parentID;
         this.pathId = pathID;
     }
 
-
+    @Id
+    @Column(name = "ID", nullable = false)
     public int getId() {
         return id;
     }
@@ -34,7 +32,8 @@ public class Edge {
         this.id = id;
     }
 
-
+    @Basic
+    @Column(name = "PARENT", length = 55)
     public String getParentId() {
         return parentId;
     }
@@ -43,7 +42,8 @@ public class Edge {
         this.parentId = parentId;
     }
 
-
+    @Basic
+    @Column(name = "PATH", length = 55)
     public String getPathId() {
         return pathId;
     }
@@ -52,7 +52,8 @@ public class Edge {
         this.pathId = pathId;
     }
 
-
+    @Basic
+    @Column(name = "NODE_ID", nullable = false)
     public int getIdNode() {
         return idNode;
     }
@@ -61,13 +62,13 @@ public class Edge {
         this.idNode = idNode;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name = "NODE_ID",referencedColumnName = "ID",nullable = false,insertable = false,updatable = false)
-//    public Node getNodeByIdNode(){
-//        return nodeByIdNode;
-//    }
-//
-//    public void setNodeByIdNode(Node nodeByIdNode){
-//        this.nodeByIdNode = nodeByIdNode;
-//    }
+    @ManyToOne
+    @JoinColumn(name = "NODE_ID",referencedColumnName = "ID",nullable = false,insertable = false,updatable = false)
+    public Node getNodeByIdNode(){
+        return nodeByIdNode;
+    }
+
+    public void setNodeByIdNode(Node nodeByIdNode){
+        this.nodeByIdNode = nodeByIdNode;
+    }
 }

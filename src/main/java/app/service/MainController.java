@@ -1,3 +1,4 @@
+/*
 package app.service;
 
 import app.parser.JsonReader;
@@ -16,3 +17,4 @@ public class MainController {
     }
 
 }
+*/

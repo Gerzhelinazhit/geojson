@@ -3,8 +3,8 @@ package app.model;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity
 //@Table(name = "node", schema ="geojson", catalog = "")
+@Entity
 public class Node {
 
     @Id
@@ -15,6 +15,8 @@ public class Node {
 
     public Node() {
     }
+
+
 
     public Node(String name) {
         this.name = name;
