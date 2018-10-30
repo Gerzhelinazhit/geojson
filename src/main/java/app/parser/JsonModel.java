@@ -2,11 +2,13 @@ package app.parser;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import org.springframework.stereotype.Component;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JsonModel {
     class GeoJson {
         @SerializedName("type")
