@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Edge {
     private int id;
-    private int idNode;
+    private String idNode;
     private String  parentId;
     private String pathId;
     private Node nodeByIdNode;
@@ -17,13 +17,22 @@ public class Edge {
 //    public EdgeEntity() {
 //    }
 
-    public Edge(String parentID, String pathID, String ID) {
-        this.parentId = parentID;
-        this.pathId = pathID;
+
+    public Edge(String idNode, String parentId, String pathId) {
+        this.idNode = idNode;
+        this.parentId = parentId;
+        this.pathId = pathId;
+    }
+
+    public Edge(String parentId, String pathId) {
+
+        this.parentId = parentId;
+        this.pathId = pathId;
     }
 
     @Id
     @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -54,11 +63,11 @@ public class Edge {
 
     @Basic
     @Column(name = "NODE_ID", nullable = false)
-    public int getIdNode() {
+    public String getIdNode() {
         return idNode;
     }
 
-    public void setIdNode(int idNode) {
+    public void setIdNode(String idNode) {
         this.idNode = idNode;
     }
 

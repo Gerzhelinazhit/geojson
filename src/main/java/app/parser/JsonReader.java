@@ -18,21 +18,12 @@ import java.util.ArrayList;
 
 import static java.lang.Integer.parseInt;
 
-@Service
+
 public class JsonReader {
-    @Autowired
-    private NodeRepo nodeRepo;
-    @Autowired
-    private EdgeRepo edgeRepo;
+
     Gson gson = new Gson();
     private ArrayList<Edge> edges = new ArrayList<Edge>();
     private ArrayList<Node> nodes = new ArrayList<Node>();
-
-
-
-
-
-
 
     public void takeInfoFromJSON() {
         BufferedReader bufferedReader = null;
@@ -50,13 +41,13 @@ public class JsonReader {
                         if (pathId.contains(",")) {
                             String[] pathIds = pathId.split(", ");
                             for (String str : pathIds) {
-                                edges.add(new Edge(t.properties.parentId, str, t.properties.id));
+                                edges.add(new Edge(t.properties.id, t.properties.parentId, str));
                             }
                         } else {
-                            edges.add(new Edge(t.properties.parentId, t.properties.pathId, t.properties.id));
+                            edges.add(new Edge(t.properties.id, t.properties.parentId, t.properties.pathId));
                         }
                     } else {
-                        edges.add(new Edge(t.properties.parentId, t.properties.pathId, t.properties.id));
+                        edges.add(new Edge(t.properties.id, t.properties.parentId, t.properties.pathId));
                     }
                 }
             }
@@ -77,7 +68,7 @@ public class JsonReader {
             System.out.println(edge.getParentId() + "   " + edge.getPathId() + "   " + edge.getNodeByIdNode());
         }
 
-        nodeRepo.save(nodes.get(1));
+
 
     }
 
