@@ -64,9 +64,9 @@ public class JsonReader {
             }
         }
         System.out.println("--------------------------------------");
-        for (Edge edge : edges) {
+        /*for (Edge edge : edges) {
             System.out.println(edge.getParentId() + "   " + edge.getPathId() + "   " + edge.getNodeByIdNode());
-        }
+        }*/
 
 
 

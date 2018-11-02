@@ -8,7 +8,7 @@ public class Edge {
     private String idNode;
     private String  parentId;
     private String pathId;
-    private Node nodeByIdNode;
+//    private Node nodeByIdNode;
 
 
 
@@ -28,6 +28,9 @@ public class Edge {
 
         this.parentId = parentId;
         this.pathId = pathId;
+    }
+
+    public Edge() {
     }
 
     @Id
@@ -71,13 +74,13 @@ public class Edge {
         this.idNode = idNode;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "NODE_ID",referencedColumnName = "ID",nullable = false,insertable = false,updatable = false)
-    public Node getNodeByIdNode(){
-        return nodeByIdNode;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "NODE_ID",referencedColumnName = "ID",nullable = false,insertable = false,updatable = false)
+//    public Node getNodeByIdNode(){
+//        return nodeByIdNode;
+//    }
 
-    public void setNodeByIdNode(Node nodeByIdNode){
-        this.nodeByIdNode = nodeByIdNode;
-    }
+//    public void setNodeByIdNode(Node nodeByIdNode){
+//        this.nodeByIdNode = nodeByIdNode;
+//    }
 }
