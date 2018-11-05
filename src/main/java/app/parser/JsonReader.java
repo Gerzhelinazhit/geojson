@@ -28,7 +28,7 @@ public class JsonReader {
     public void takeInfoFromJSON() {
         BufferedReader bufferedReader = null;
         try {
-            bufferedReader = new BufferedReader(new FileReader("C:\\Users\\Hurski_R\\IdeaProjects\\geojson\\src\\main\\resources\\geojson_m_prop.json"));
+            bufferedReader = new BufferedReader(new FileReader("C:\\Users\\Hurski_R\\IdeaProjects\\geojson\\src\\main\\resources\\geojson.json"));
             JsonModel.GeoJson result = gson.fromJson(bufferedReader, JsonModel.GeoJson.class);
 
             if (result != null) {
@@ -37,17 +37,22 @@ public class JsonReader {
                     System.out.println(t.properties.parentId + "    " + t.properties.pathId);
                     nodes.add(new Node((t.properties.id)));
                     String pathId = t.properties.pathId;
-                    if (pathId != null) {
+                    if (!pathId.equals("")) {
                         if (pathId.contains(",")) {
                             String[] pathIds = pathId.split(", ");
                             for (String str : pathIds) {
-                                edges.add(new Edge(t.properties.id, t.properties.parentId, str));
+                                edges.add(new Edge(t.properties.id, str, "path"));
                             }
                         } else {
-                            edges.add(new Edge(t.properties.id, t.properties.parentId, t.properties.pathId));
+                            edges.add(new Edge(t.properties.id, t.properties.pathId, "path"));
+                        }
+                        if(!t.properties.parentId.equals("")){
+                            edges.add(new Edge(t.properties.id, t.properties.parentId, "child-to-parent"));
+                            edges.add(new Edge( t.properties.parentId, t.properties.id, "parent-to-child"));
                         }
                     } else {
-                        edges.add(new Edge(t.properties.id, t.properties.parentId, t.properties.pathId));
+                        edges.add(new Edge(t.properties.id, t.properties.parentId, "child-to-parent"));
+                        edges.add(new Edge( t.properties.parentId, t.properties.id, "parent-to-child"));
                     }
                 }
             }

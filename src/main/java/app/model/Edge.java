@@ -1,34 +1,21 @@
 package app.model;
 
 import javax.persistence.*;
-//@Table(name ="edge",schema = "geojson", catalog = "")
+@Table(name ="edges")
 @Entity
 public class Edge {
     private int id;
-    private String idNode;
-    private String  parentId;
-    private String pathId;
-//    private Node nodeByIdNode;
+    private String sourceNodeID;
+    private String  targetNodeID;
+    private String edgeType;
 
-
-
-
-
-//    public EdgeEntity() {
-//    }
-
-
-    public Edge(String idNode, String parentId, String pathId) {
-        this.idNode = idNode;
-        this.parentId = parentId;
-        this.pathId = pathId;
+    public Edge(String sourceNodeID, String targetNodeID, String edgeType) {
+        this.sourceNodeID = sourceNodeID;
+        this.targetNodeID = targetNodeID;
+        this.edgeType = edgeType;
     }
 
-    public Edge(String parentId, String pathId) {
 
-        this.parentId = parentId;
-        this.pathId = pathId;
-    }
 
     public Edge() {
     }
@@ -45,42 +32,33 @@ public class Edge {
     }
 
     @Basic
-    @Column(name = "PARENT", length = 55)
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
-
-    @Basic
-    @Column(name = "PATH", length = 55)
-    public String getPathId() {
-        return pathId;
-    }
-
-    public void setPathId(String pathId) {
-        this.pathId = pathId;
-    }
-
-    @Basic
-    @Column(name = "NODE_ID", nullable = false)
+    @Column(name = "sourceNodeID", nullable = false)
     public String getIdNode() {
-        return idNode;
+        return sourceNodeID;
     }
 
     public void setIdNode(String idNode) {
-        this.idNode = idNode;
+        this.sourceNodeID = idNode;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name = "NODE_ID",referencedColumnName = "ID",nullable = false,insertable = false,updatable = false)
-//    public Node getNodeByIdNode(){
-//        return nodeByIdNode;
-//    }
+    @Basic
+    @Column(name = "targetNodeID", nullable = false)
+    public String getParentId() {
+        return targetNodeID;
+    }
 
-//    public void setNodeByIdNode(Node nodeByIdNode){
-//        this.nodeByIdNode = nodeByIdNode;
-//    }
+    public void setParentId(String parentId) {
+        this.targetNodeID = parentId;
+    }
+
+    @Basic
+    @Column(name = "edgeType", nullable = false)
+    public String getPathId() {
+        return edgeType;
+    }
+
+    public void setPathId(String pathId) {
+        this.edgeType = pathId;
+    }
+
 }

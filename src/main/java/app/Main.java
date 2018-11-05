@@ -34,9 +34,9 @@ public class Main implements CommandLineRunner {
         System.out.println("----------------------------");
         JsonReader jsonReader = new JsonReader();
         jsonReader.takeInfoFromJSON();
-        for (Node t:jsonReader.getNodes()) {
+        /*for (Node t:jsonReader.getNodes()) {
             nodeRepo.save(t);
-        }
+        }*/
         for (Edge t:jsonReader.getEdges()) {
             edgeRepo.save(t);
         }

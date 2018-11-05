@@ -3,15 +3,16 @@ package app.model;
 import javax.persistence.*;
 import java.util.Collection;
 
-//@Table(name = "node", schema ="geojson", catalog = "")
+@Table(name = "nodes")
 @Entity
 public class Node {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Basic
+    @Column(name = "nodeID", nullable = false)
     private String name;
-//    private Collection<Edge> edgesById;
 
     public Node() {
     }
@@ -40,12 +41,4 @@ public class Node {
         this.name = name;
     }
 
-//    @OneToMany(mappedBy = "nodeByIdNode")
-//    public Collection<Edge> getEdgesById(){
-//        return edgesById;
-//    }
-//
-//    public void setEdgesById(Collection<Edge> edgesById){
-//        this.edgesById = edgesById;
-//    }
 }
